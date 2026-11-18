@@ -28,7 +28,9 @@ public class MemberController extends HttpServlet {
 		String nextPage = null;
 		
 		switch (command) {
-		case "":
+		case "/signup_form.mem":
+			
+			nextPage = "view/member/signup_form.jsp";
 			
 			break;
 
