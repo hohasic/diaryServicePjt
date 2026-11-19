@@ -34,6 +34,13 @@ public class MemberController extends HttpServlet {
 			
 			break;
 
+		case "/signup_confirm.mem":
+			
+			memberService = new MemberServiceForDW(new MemberDaoForMySQL());
+			int resultForSignup = memberService.signup(request, response);
+			
+			break;
+			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
