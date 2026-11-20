@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 
@@ -61,12 +63,25 @@ public class MemberController extends HttpServlet {
 			MemberDto signinedMemberDto = memberService.signin(request, response);
 			
 			if (signinedMemberDto != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("signinedMemberId", signinedMemberDto.getMemId());
+				session.setMaxInactiveInterval(60 * 30);
+				
 				nextPage = generateView("signin_ok");
 				
 			} else {
 				nextPage = generateView("signin_ng");
 				
 			}
+			
+			break;
+			
+		case "/signout_confirm.mem":
+			
+			HttpSession session = request.getSession();
+			session.removeAttribute("signinedMemberId");
+			
+			nextPage = "/";
 			
 			break;
 			
