@@ -36,3 +36,21 @@ set @@auto_increment_increment = 3;
 drop table tbl_member;
 
 
+SELECT
+    @@auto_increment_increment,
+    @@session.auto_increment_increment,
+    @@global.auto_increment_increment;
+
+SET GLOBAL auto_increment_increment = 3;
+
+
+select 
+	* 
+from 
+	tbl_member 
+where 
+	memId = 'gildong';
+
+
+
+
